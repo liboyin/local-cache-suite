@@ -1,0 +1,5 @@
+devpi-server:
+  serverdir: /var/cache/devpi-server
+  host: 0.0.0.0
+  threads: 1
+
