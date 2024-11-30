@@ -11,4 +11,3 @@ services:
       - CACHE_MAX_SIZE=10G
 volumes:
   apt_cacher_ng_vol:
-

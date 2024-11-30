@@ -9,4 +9,3 @@ services:
 
 volumes:
   devpi_server_vol:
-
