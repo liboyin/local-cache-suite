@@ -1,6 +1,6 @@
 services:
   apt-cacher-ng:
-    image: sameersbn/apt-cacher-ng:latest
+    build: .
     container_name: apt-cacher-ng
     ports:
       - "3142:3142"
