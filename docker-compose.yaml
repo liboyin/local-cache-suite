@@ -1,0 +1,5 @@
+name: local-cache-suite
+
+include:
+  - devpi-server/docker-compose.yaml
+  - apt-cacher-ng/docker-compose.yaml
