@@ -2,6 +2,7 @@ services:
   devpi-server:
     build: .
     container_name: devpi-server
+    restart: always
     ports:
       - "3141:3141"
     volumes:
