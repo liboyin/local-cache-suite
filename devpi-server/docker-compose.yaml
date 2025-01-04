@@ -1,6 +1,7 @@
 services:
   devpi-server:
     build: .
+    init: true
     container_name: devpi-server
     restart: always
     ports:

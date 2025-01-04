@@ -1,6 +1,7 @@
 services:
   apt-cacher-ng:
     build: .
+    init: true
     container_name: apt-cacher-ng
     ports:
       - "3142:3142"
