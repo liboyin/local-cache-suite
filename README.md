@@ -18,3 +18,29 @@ Define in `$HOME/.pip/pip.conf`:
 index-url = <server_ip>:3141/root/pypi/+simple/
 trusted-host = <server_ip>
 ```
+
+## DockerHub registry
+
+Define in `/etc/docker/daemon.json`:
+
+```
+{
+  "insecure-registries": ["<server_ip>:5000"]
+  "registry-mirrors": ["http://<server_ip>:5000"]
+}
+```
+
+Restart Docker:
+
+```
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+```
+
+Push & pull:
+
+```
+docker tag nginx:latest <server_ip>:5000/nginx:latest
+docker push <server_ip>:5000/nginx:latest
+docker pull <server_ip>:5000/nginx:latest
+```

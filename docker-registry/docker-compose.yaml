@@ -1,0 +1,14 @@
+services:
+  registry:
+    image: registry:2
+    container_name: registry-cache
+    restart: always
+    ports:
+      - "5000:5000"
+    volumes:
+      - docker_registry_vol:/var/lib/registry
+    environment:
+      - REGISTRY_PROXY_REMOTEURL=https://registry-1.docker.io
+
+volumes:
+  docker_registry_vol:
