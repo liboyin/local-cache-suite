@@ -25,7 +25,7 @@ Define in `/etc/docker/daemon.json`:
 
 ```
 {
-  "insecure-registries": ["<server_ip>:5000"]
+  "insecure-registries": ["<server_ip>:5000"],
   "registry-mirrors": ["http://<server_ip>:5000"]
 }
 ```
