@@ -9,6 +9,16 @@ services:
       - docker_registry_vol:/var/lib/registry
     environment:
       - REGISTRY_PROXY_REMOTEURL=https://registry-1.docker.io
+  registry-browser:
+    image: klausmeyer/docker-registry-browser:latest
+    container_name: docker-registry-browser
+    environment:
+      - SECRET_KEY_BASE=123456
+      - DOCKER_REGISTRY_URL=http://docker-registry:5000/v2
+    ports:
+      - "5001:5001"
+    depends_on:
+      - docker-registry
 
 volumes:
   docker_registry_vol:
