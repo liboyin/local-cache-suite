@@ -12,6 +12,7 @@ services:
   registry-browser:
     image: klausmeyer/docker-registry-browser:latest
     container_name: docker-registry-browser
+    restart: always
     environment:
       - DOCKER_REGISTRY_URL=http://docker-registry:5000/v2
       - SECRET_KEY_BASE=123456
