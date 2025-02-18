@@ -4,3 +4,4 @@ include:
   - apt-cacher-ng/docker-compose.yaml
   - devpi-server/docker-compose.yaml
   - docker-registry/docker-compose.yaml
+  - nginx/docker-compose.yaml
