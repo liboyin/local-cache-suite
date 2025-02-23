@@ -3,7 +3,7 @@ services:
     build: .
     init: true
     container_name: devpi-server
-    restart: always
+    restart: on-failure:3
     ports:
       - "3141:3141"
     volumes:
