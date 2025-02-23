@@ -9,7 +9,7 @@ services:
       - docker_registry_vol:/var/lib/registry
     environment:
       - REGISTRY_PROXY_REMOTEURL=https://registry-1.docker.io
-  registry-browser:
+  docker-registry-browser:
     image: klausmeyer/docker-registry-browser:latest
     container_name: docker-registry-browser
     restart: on-failure:3
