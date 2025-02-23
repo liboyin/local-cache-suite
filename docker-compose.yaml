@@ -5,3 +5,7 @@ include:
   - devpi-server/docker-compose.yaml
   - docker-registry/docker-compose.yaml
   - nginx/docker-compose.yaml
+
+networks:
+  default:
+    name: local-network
