@@ -36,11 +36,3 @@ Restart Docker:
 sudo systemctl daemon-reload
 sudo systemctl restart docker
 ```
-
-Push & pull:
-
-```
-docker tag nginx:latest <server_ip>:5000/nginx:latest
-docker push <server_ip>:5000/nginx:latest
-docker pull <server_ip>:5000/nginx:latest
-```
