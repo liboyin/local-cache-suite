@@ -1,0 +1,41 @@
+services:
+  netdata:
+    image: netdata/netdata:latest
+    container_name: netdata
+    runtime: nvidia
+    restart: unless-stopped
+    environment:
+      - NETDATA_DISABLE_CLOUD=1
+      - NETDATA_OVERRIDE_HISTORY=604800  # 7 days
+      - TZ=Australia/Sydney
+    user: netdata:netdata
+    cap_add:
+      - SYS_PTRACE
+      - SYS_ADMIN  # we may not need this
+    security_opt:
+      - apparmor:unconfined
+    devices:
+      - "/dev/nvidiactl:/dev/nvidiactl"    # NVIDIA GPU monitoring
+      - "/dev/nvidia-uvm:/dev/nvidia-uvm"  # (Uncomment if needed)
+      - "/dev/nvidia-uvm-tools:/dev/nvidia-uvm-tools"
+      - "/dev/nvidia0:/dev/nvidia0"
+    volumes:
+      - netdata_config:/etc/netdata      # Configuration files
+      - netdata_lib:/var/lib/netdata     # Runtime data
+      - netdata_cache:/var/cache/netdata # Cache data
+      - /etc/passwd:/host/etc/passwd:ro  # User information
+      - /etc/group:/host/etc/group:ro    # Group information
+      - /proc:/host/proc:ro              # Process information
+      - /sys:/host/sys:ro                # System information
+      - /var/run/docker.sock:/var/run/docker.sock:ro  # Docker socket
+    ports:
+      - "19999:19999"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:19999/api/v1/info"]
+      timeout: 10s
+      start_period: 30s
+
+volumes:
+  netdata_config:
+  netdata_lib:
+  netdata_cache:
