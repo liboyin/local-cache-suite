@@ -10,7 +10,6 @@ services:
       - NVIDIA_DRIVER_CAPABILITIES=all
       - NVIDIA_VISIBLE_DEVICES=all
       - TZ=Australia/Sydney
-    user: netdata:netdata
     cap_add:
       - SYS_PTRACE
       - SYS_ADMIN  # we need this for cgroup network monitoring
