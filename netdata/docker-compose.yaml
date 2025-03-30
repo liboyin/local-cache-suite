@@ -7,16 +7,18 @@ services:
     environment:
       - NETDATA_DISABLE_CLOUD=1
       - NETDATA_OVERRIDE_HISTORY=604800  # 7 days
+      - NVIDIA_DRIVER_CAPABILITIES=all
+      - NVIDIA_VISIBLE_DEVICES=all
       - TZ=Australia/Sydney
     user: netdata:netdata
     cap_add:
       - SYS_PTRACE
-      - SYS_ADMIN  # we may not need this
+      - SYS_ADMIN  # we need this for cgroup network monitoring
     security_opt:
       - apparmor:unconfined
     devices:
-      - "/dev/nvidiactl:/dev/nvidiactl"    # NVIDIA GPU monitoring
-      - "/dev/nvidia-uvm:/dev/nvidia-uvm"  # (Uncomment if needed)
+      - "/dev/nvidiactl:/dev/nvidiactl"
+      - "/dev/nvidia-uvm:/dev/nvidia-uvm"
       - "/dev/nvidia-uvm-tools:/dev/nvidia-uvm-tools"
       - "/dev/nvidia0:/dev/nvidia0"
     volumes:
