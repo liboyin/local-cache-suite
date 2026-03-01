@@ -1,6 +1,6 @@
 services:
   docker-registry:
-    image: registry:2
+    image: registry:latest
     container_name: docker-registry
     restart: on-failure:3
     ports:
