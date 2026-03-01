@@ -1,6 +1,7 @@
 services:
   nginx-reverse-proxy:
     image: nginx:latest
+    pull_policy: always
     container_name: nginx-reverse-proxy
     ports:
       - "80:80"

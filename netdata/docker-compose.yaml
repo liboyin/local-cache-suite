@@ -1,6 +1,7 @@
 services:
   netdata:
     image: netdata/netdata:latest
+    pull_policy: always
     container_name: netdata
     runtime: nvidia
     restart: unless-stopped

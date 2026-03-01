@@ -1,6 +1,7 @@
 services:
   docker-registry:
     image: registry:latest
+    pull_policy: always
     container_name: docker-registry
     restart: on-failure:3
     ports:
