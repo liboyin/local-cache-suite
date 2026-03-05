@@ -1,6 +1,6 @@
-# Local Cache Suite
+# Local Infras Suite
 
-A collection of cache/mirror services to run locally
+A collection of infras services to run locally
 
 ## APT cache
 
@@ -35,4 +35,16 @@ Restart Docker:
 ```
 sudo systemctl daemon-reload
 sudo systemctl restart docker
+```
+
+## Nginx Redirections
+
+See `nginx/redirect.conf`
+
+## Ollama + OpenWebUI
+
+To download a model:
+
+```
+docker exec -it ollama ollama pull qwen3.5:27b
 ```
