@@ -6,3 +6,4 @@ include:
   - docker-registry/docker-compose.yaml
   - netdata/docker-compose.yaml
   - nginx/docker-compose.yaml
+  - ollama/docker-compose.yaml
