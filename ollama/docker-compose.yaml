@@ -25,6 +25,16 @@ services:
             - driver: nvidia
               count: 1
               capabilities: [gpu]
+    healthcheck:
+      # If nvidia-smi fails, the container is marked unhealthy.
+      test: ["CMD", "nvidia-smi", "-L"]
+      interval: 30m
+      timeout: 10s
+      retries: 3
+      start_period: 1m
+    # Label required for Autoheal (if using filtered monitoring)
+    labels:
+      - "autoheal=true"
 
   open-webui:
     container_name: open-webui
@@ -40,6 +50,17 @@ services:
     depends_on:
       - ollama
 
+  autoheal:
+    container_name: autoheal
+    image: willfarrell/autoheal:latest
+    restart: unless-stopped
+    environment:
+      # Monitor all containers with a healthcheck
+      - AUTOHEAL_CONTAINER_LABEL=all
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
 volumes:
   ollama_data:
   open_webui_data:
+
