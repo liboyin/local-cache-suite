@@ -13,6 +13,10 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* && \
     sed 's/# ForeGround: 0/ForeGround: 1/' -i /etc/apt-cacher-ng/acng.conf && \
     sed 's/# PassThroughPattern:.*this would allow.*/PassThroughPattern: .* #/' -i /etc/apt-cacher-ng/acng.conf && \
+    # Never cache InRelease. Revalidating a cached copy uses Range/If-Range,
+    # which can splice new bytes onto a stale one and break its GPG signature.
+    # Passing it straight through avoids that; Packages stays cached.
+    printf '\nDontCacheResolved: .*InRelease\n' >> /etc/apt-cacher-ng/acng.conf && \
     wget https://raw.githubusercontent.com/sameersbn/docker-apt-cacher-ng/refs/heads/master/entrypoint.sh -O /sbin/entrypoint.sh && \
     chmod 755 /sbin/entrypoint.sh
 
