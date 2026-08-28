@@ -3,13 +3,14 @@ services:
     image: registry:latest
     pull_policy: always
     container_name: docker-registry
-    restart: on-failure:3
+    restart: unless-stopped
     ports:
       - "5000:5000"
     volumes:
       - docker_registry_vol:/var/lib/registry
     environment:
       - REGISTRY_PROXY_REMOTEURL=https://registry-1.docker.io
+      - REGISTRY_PROXY_TTL=720h  # keep for 30 days
 
 volumes:
   docker_registry_vol:
